@@ -24,7 +24,7 @@ public class Employee {
 	private List<String> childNames;
 	private List<String> childIdNumbers;
 	
-	public Employee(String employeeId, String firstName, String lastName, String idNumber, String address, int yearJoined, int monthJoined, int dayJoined, boolean isForeigner, boolean gender) {
+public Employee(String employeeId, String firstName, String lastName, String idNumber, String address, int yearJoined, int monthJoined, int dayJoined, boolean isForeigner, boolean gender) {
 		this.idNumber = idNumber;
 		this.yearJoined = yearJoined;
 		this.monthJoined = monthJoined;
@@ -39,26 +39,22 @@ public class Employee {
 	 * Jika pegawai adalah warga negara asing gaji bulanan diperbesar sebanyak 50%
 	 */
 	
-	public void setMonthlySalary(int grade) {	
-		if (grade == 1) {
-			monthlySalary = 3000000;
-			if (isForeigner) {
-				monthlySalary = (int) (3000000 * 1.5);
-			}
-		}else if (grade == 2) {
-			monthlySalary = 5000000;
-			if (isForeigner) {
-				monthlySalary = (int) (3000000 * 1.5);
-			}
-		}else if (grade == 3) {
-			monthlySalary = 7000000;
-			if (isForeigner) {
-				monthlySalary = (int) (3000000 * 1.5);
-			}
-		}
-	}
-	
-	public void setAnnualDeductible(int deductible) {	
+public void setMonthlySalary(int grade) {
+    if (grade == 1) {
+        monthlySalary = 3000000;
+    } else if (grade == 2) {
+        monthlySalary = 5000000;
+    } else if (grade == 3) {
+        monthlySalary = 7000000;
+    } else {
+        throw new IllegalArgumentException("Invalid grade value.");
+    }
+    if (isForeigner) {
+        monthlySalary *= 1.5;
+    }
+}
+
+public void setAnnualDeductible(int deductible) {	
 		this.annualDeductible = deductible;
 	}
 	
@@ -75,7 +71,7 @@ public class Employee {
 		childIdNumbers.add(childIdNumber);
 	}
 	
-	public int getAnnualIncomeTax() {
+public int getAnnualIncomeTax() {
 		
 		//Menghitung berapa lama pegawai bekerja dalam setahun ini, jika pegawai sudah bekerja dari tahun sebelumnya maka otomatis dianggap 12 bulan.
 		LocalDate date = LocalDate.now();
